@@ -7,12 +7,12 @@ const port = process.env.PORT || 3000; // Use the dynamic port assigned by Herok
 
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/images', express.static('images'));
-app.use(express.static('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main'));
+app.use(express.static('SHree-BHandar-main'));
 
 // Function to load pre-defined values from JSON file
 function loadPreDefinedValues() {
   try {
-    return JSON.parse(fs.readFileSync('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main/preDefinedValues.json', 'utf8'));
+    return JSON.parse(fs.readFileSync('SHree-BHandar-main/preDefinedValues.json', 'utf8'));
   } catch (err) {
     console.error('Error loading pre-defined values:', err);
     return {}; // Return empty object in case of error
@@ -29,7 +29,7 @@ app.get('/ProfilePage', (req, res) => {
   const preDefinedValues = loadPreDefinedValues();
   
   // Read the HTML file and serve it as response
-  fs.readFile('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main/Profile.html', 'utf8', (err, data) => {
+  fs.readFile('SHree-BHandar-main/Profile.html', 'utf8', (err, data) => {
     if (err) {
       res.status(500).send('Internal Server Error');
       return;
@@ -70,7 +70,7 @@ app.post('/updateProfile', (req, res) => {
   };
 
   // Save updated values to JSON file
-  fs.writeFileSync('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
+  fs.writeFileSync('SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
 
   // Redirect to the form page after successful submission
   res.redirect('/ProfilePage');
@@ -95,7 +95,7 @@ app.post('/updateShipmentInfo', (req, res) => {
   };
 
   // Save updated values to JSON file
-  fs.writeFileSync('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
+  fs.writeFileSync('SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
 
   // Redirect to the form page after successful submission
   res.redirect('/ProfilePage');
@@ -124,7 +124,7 @@ app.post('/signup', (req, res) => {
   preDefinedValues.signupInfo.push({ name, email, password, phone });
 
   // Save updated values to JSON file
-  fs.writeFileSync('C:\\Users\\divya\\OneDrive\\Desktop\\SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
+  fs.writeFileSync('SHree-BHandar-main/preDefinedValues.json', JSON.stringify(preDefinedValues, null, 2));
 
   // Redirect to the login and registration page after successful sign-up
   res.redirect('/login-registration');
